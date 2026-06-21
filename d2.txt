@@ -1,0 +1,66 @@
+urs:10.0.1.0/24+1
+10.0.1.1/24
+10.1.1.255
+10.0.2.0/? -1
+acccamsur.com
+
+FOR ACCENTURE-SG.COM
+@C1:
+config t
+vlan 13
+name ACCENTURE-SG.COM
+exit
+Interface vlan 13
+ desc ACCENTURE-SG.COM
+ no shut
+ ip add 10.0.4.1 255.255.252.0
+exit
+ip dhcp excluded-add 10.0.4.1 10.0.4.100
+ip dhcp pool ACCENTURE-SG.COM
+ network 10.0.4.0 255.255.252.0
+ domain-name ACCENTURE-SG.COM
+ dns-server 8.8.8.8
+ default-router 10.0.4.1
+end
+@c2
+config t
+int e1/0
+switchport mode access
+switchport access vlan 13
+end 
+sh vlan brief
+@s2:
+CONFIG T
+INT E1/0
+no ip address dhcp
+ip address dhcp
+no shut
+do bp
+end
+
+
+
+-----------
+
+
+ 5b
+/27
+10.0.0.32/27
+10.0.0.33
+10.0.0.63
+10.0.0.64/?
+
+
+
+-----------
+
+FOR ACCENTUREBSP.COM
+
+
+
+
+-----
+10.0.4.0/22+1
+1st: 10.0.4.1
+last:10.0.7.255
+notUres: 10.0.8.0/? -1
