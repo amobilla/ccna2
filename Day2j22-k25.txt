@@ -2,7 +2,7 @@ Day2. Task1.
 1. Repetition is the mother
 of all skills:
 - switch: 
-- cucm:
+- cucm: 
 - edge:
 
 Task2: What 3 Letters that will make
