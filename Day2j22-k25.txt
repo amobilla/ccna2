@@ -5,7 +5,7 @@ of all skills:
 - cucm: 
 - edge:
 
-Task2: What 3 Letters that will make
+Task2: What 3 Letters that will make 
        your HR file/resume = promoted/
        pirated
               IPv4  IPv6
