@@ -1,0 +1,391 @@
+
+config t
+username admin privilege 15 password pass
+
+
+
+task1:
+how to get hired in NOC and SOC: learn practical
+
+OSI layer:
+how to hack/steal money: 2 ways:
+1. force yourself vs. get invited
+
+2. get invited: human nature
+
+mitre att&ck 139 and 445
+
+cmd 
+poweshell
+set-netfirewallprofile -name ppublic, private, domain -enabled false
+
+
+tas2:
+how to attack force youtself to open all the naked pictures of your victim
+step1: namp -v 10.3.3._ , open 139/445
+step2: 
+
+net use x: /delete
+net use n: /delete
+
+step 3: nakawain c: 
+
+net use \\10.3.3.__ \ipc$
+
+
+config t
+line vty 0 14
+
+
+task3: how to create a cisco firewall
+basics: standard permit/deny
+permit family
+permit friends
+deny strangers
+deny meralco
+deny maguutang
+permit pets
+hostile contries
+
+extended:
+	protocol hacker victim port
+
+	type	source	destination	example
+deny	chicked	pagpag	urmouth		chickenjoy
+permit	beef	bonchon	urmouth		spcychix
+
+
+config t
+Int gi 1
+ NO ip access-group 25 in
+end
+
+
+config t
+NO ip access-list standard NOISKUL
+ip access-list standard NOISKUL
+DENY   172.67.14.0   0.0.255.255
+DENY   50.6.160.0    0.0.255.255
+DENY   184.168.125.0 0.0.255.255
+DENY   155.137.92.0  0.0.255.255
+DENY   104.22.36.0  0.0.255.255
+Permit Any
+Int Gi 1
+ ip access-group NOISKUL in
+end
+
+
+
+config t
+NO ip access-list standard NOTORS
+ip access-list standard NOTORS
+DENY   162.159.0.0  0.0.255.255
+DENY   104.21.0.0   0.0.255.255
+DENY   172.67.0.0   0.0.255.255
+DENY   84.32.0.0    0.0.255.255
+DENY   76.223.0.0   0.0.255.255
+DENY   13.248.0.0   0.0.255.255
+DENY   104.21.0.0   0.0.255.255
+DENY   104.26.0.0   0.0.255.255
+Permit Any
+Int Gi 1
+ ip access-group NOTORS in
+end
+
+config t
+int gi 1
+no ip access-group NOTORS in
+end
+
+---------------
+task5:
+web app security
+www.fbi.gov vs www.neu.edu.ph vs. www.bet88.ph
+
+
+
+-----------------
+create a firewall to proctect docker apps:
+https://github.com/rivancorp/devop
+
+
+what is a docker container:
+
+realpc:cpu+hdd+ram+mb  + --> VM
+		       + OS --> DOCKER
+
+
+
+config t
+int gi 2
+no shut
+ip add 192.168.102.11 255.255.255.0
+line vty 0 14
+exec-timeout 0 0
+transport input all
+iox
+interface GigabitEthernet1
+ip address dhcp
+ip nat outside
+no shut
+exit
+!
+interface VirtualPortGroup0
+ip address 192.168.35.1 255.255.255.0
+ip nat inside
+exit
+!
+ip nat inside source list GS_NAT_ACL interface GigabitEthernet1 overload
+ip access-list standard GS_NAT_ACL
+permit 192.168.0.0 0.0.255.255
+!
+app-hosting appid guestshell
+ app-vnic gateway1 virtualportgroup 0 guest-interface 0
+    guest-ipaddress 192.168.35.3 netmask 255.255.255.0	
+	app-default-gateway 192.168.35.1  guest-interface 0 
+	name-server0 1.1.1.1
+ app-resource profile custom 
+   cpu 1500 
+   memory 512
+   persist-disk 1000
+end
+
+
+---
+WEB SERVER FOR ONLINE GAMING:
+yum install -y nginx
+
+
+firewall task1: you are hired: firewall specialist:
+bet10.com allow/permit only http:80, https:443   tcp, udp
+bet11.com allow/permit ping/icmp, dns:53, ssh:22  
+
+protocol  hacker/source  victim/destination port
+
+config t
+no ip access-list extended FWP1
+ip access-list extended FWP1
+permit tcp any host bet10.com eq 80
+permit tcp any host bet10.com eq 443
+permit icmp any host bet11.com
+permit tcp any host bet11.com eq 53
+permit tcp any host bet11.com eq 22
+int gi 3
+ip access-group FWP1 in
+do sh ip access-list FWP1
+
+firewall task2: you are hired: firewall specialist:
+VOICE bet10.com allow/permit only SCCP: 2000, SIP:5060/5061,
+bet11.com allow/permit HTTP, HTTPS, DNS
+
+protocol hacker/source victim/destination  port
+  
+config t
+no ip access-list extended FWP2
+ip access-list extended FWP2
+permit tcp any host bet10.com eq 2000
+permit tcp any host bet10.com eq 5060
+permit tcp any host bet10.com eq 5061
+permit icmp any host bet11.com
+permit tcp any host bet11.com eq 80
+permit tcp any host bet11.com eq 443
+permit tcp any host bet11.com eq 53
+int gi 3
+ip access-group FWP2 in
+do sh ip access-list FWP2
+
+firewall task3: you are hired: firewall specialist:
+VOICE bet10.com allow/permit only SSH, DNS, HTTP, SCCP
+bet11.com allow/permit HTTPS, HTTP, SIPS
+
+no ip access-list extended FWP3
+ip access-list extended FWP3
+permit tcp any host bet10.com eq 22
+permit tcp any host bet10.com eq 53
+permit tcp any host bet10.com eq 80
+permit tcp any host bet10.com eq 2000
+permit icmp any host bet11.com
+permit tcp any host bet11.com eq 443
+permit tcp any host bet11.com eq 80
+permit tcp any host bet11.com eq 5060
+permit tcp any host bet11.com eq 5061
+int gi 3
+ip access-group FWP3 in
+do sh ip access-list FWP3
+
+
+
+PORT ADDRESS TRANSLATION + NETWROK ADDRESS TRANSLATION:
+	FORTINET, SOPHOS, CP, HUAWEI,
+BET10.COM 		+ PAT/NAT:fw
+insidelocal		insideGlobal/OUTSIDE
+192.168.102.10:80	208.8.8.69:80   (208.8.8.88:8080)
+192.168.102.10:443	208.8.8.69.443   (208.8.8.88:8443)
+			betlog.com
+
+BET11.COM 
+192.168.102.11:80	208.8.8.69:8080
+192.168.102.11:443	208.8.8.69:8443
+
+
+config t
+no access-list 8
+access-list 8 permit host 192.168.103.10
+access-list 8 permit host 192.168.103.11
+ip host betlog.com 208.8.8.69
+Int Gi 3
+ ip nat Inside
+Int gi 1
+ ip nat Outside
+IP Nat inside source static tcp 192.168.103.10 80 208.8.8.69 80
+IP Nat inside source static tcp 192.168.103.10 443 208.8.8.69 443
+IP Nat inside source static tcp 192.168.103.11 80 208.8.8.69 8080
+IP Nat inside source static tcp 192.168.103.11 443 208.8.8.69 8443
+IP nat inside source list 8 int gi 1 Overload
+end
+show ip nat translation
+
+
+------------
+config t
+ntp server time.google.com
+end
+sh ntp assoc
+sh ntp status
+show ntp associations detail
+
+
+CCNA SECURITY LAB 3: Configure public key and ssh:
+step1: generate a publickey: keykeymo
+config t
+ip domain name keykeymo
+crypto key generate rsa modulus 1024
+step2: use the publickey
+config t
+ip ssh version 2
+sh ip sshh
+step3: windows pc will download key:
+---- BEGIN SSH2 PUBLIC KEY ----
+AAAAB3NzaC1yc2EAAAADAQABAAABAQC4W8GZylirb7Z8SFY3kbpPdA9v0d/TS4b6
+QNwaYJsJkSASRw5Ll92DYMbOy1TyH66dyXFxwXkajxzTlMPSwYLuW1L9WbKOBbrI
+yX0SuIU7s7ABRBzSD+Jk0u8TcqUU8W7DYm9FymJJjq6uyGKD1qp7v0JtYGUVo5EL
+5cqqVmA80pIXGUVppQN06DF94ewbnJ0BjTOQMa1Eii0vtO4rmbPBrG+RTa4GVqTU
+5I+dqJrj32qDslK5lG67gE+Ln4/VuCv0yjNXRYHA0ZiT0NsQYSkipTt+4ojA8Ywb
+ZkuEcFL8mjOtUPEjh9vHW8QX9wokqrlJOZIWQlT34GaSLCTIHnlJ
+---- END SSH2 PUBLIC KEY ----
+
+
+task4: the task that will change your life:
+
+enable
+show ip access-list
+show ip access-lists
+
+
+@R2
+conf t
+ ip access-list standard NAT
+
+permit 10.2.3.3
+  permit 192.168.3.1
+  permit 10.1.3.11
+  exit
+  end
+
+@R2
+conf t
+ int e0/1
+  ip nat inside
+  exit
+ int e0/0
+  ip nat outside
+  exit
+ ip nat inside source list NAT interface e0/0 overload
+ end
+
+@R3
+ping 192.168.1.1
+
+@R1
+conf t
+ ntp master 1
+ ntp source e0/2
+ end
+
+@R1
+clock set 00:00:00 January 1 2019
+
+@R2
+conf t
+ ntp server 10.1.3.1
+ end
+
+@R2
+show ntp association
+
+@R1
+conf t
+ !
+ ip dhcp excluded-address 10.1.3.1 10.1.3.10
+ !
+ ip dhcp pool NETPOOL
+  network 10.1.3.0 255.255.255.0
+  end
+
+@R3
+conf t
+ int e0/2
+  no shut
+  ip add dhcp
+  end
+
+@R3
+show ip interface brief
+
+@R1
+show ip dhcp binding
+
+@R3
+conf t
+ line vty 0 4
+  transport input ssh
+  login local
+  end
+
+@r3
+@Cisco Device
+show run | s line
+
+@R3
+conf t
+ username netadmin password N3t4ccess
+ crypto key generate rsa modulus 1024 
+ end
+
+@R1
+ssh -l netadmin 10.1.3.11
+
+
+
+
+----------------
+IF YOU MASTER/EXPERT THE FINGER: YOU WILL COME
+
+PLDT 2001:4452::/32
+32Ooffices		512offices	1024offices	64offices	128offices	
+2r5			2r9		2r10		2r6		2r7
+8ion2ndzero		8ion3rdzero	4ion3rdzero	4ion2ndzero	2ion2ndzero
+
+
+0000			0000		0000		0000		0000
+0800			0080		0040		0400		0200	
+1000			0100		0080		0800		0400
+1800			0180		00c0		0c00		0600
+2000			0200		0100		1000		0800
+2800			0280		0140		1400		0a00
+3000			0300		0180		1800		0c00
+3800			0380		01c0		1c00		0E00
+4000			0400		0200		2000		1000		
+									
+
+  
