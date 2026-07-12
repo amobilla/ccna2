@@ -355,6 +355,8 @@ Cost >> Priority >> Number, lowest cost WINS!
 10G cost - 1
 1gig cost = 4
 faE cost = 19
+40G fiber
+100G LR-spf fiber = 40k to 80k(with BOX)
 
 who is darna: 802.1d
 kabit PC = 30s
